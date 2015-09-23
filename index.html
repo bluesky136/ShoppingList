@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+
+<title></title>
+ <script src="assets/javascripts/vendor/jquery.js"></script> 
+  <script src="assets/javascripts/vendor/jquery.min.js"></script> 
+  <script src="assets/javascripts/vendor/underscore.js"></script>
+  <script src="assets/javascripts/vendor/backbone.js"></script>
+  <script src="assets/javascripts/vendor/backbone.marionette.js"></script>
+  <script src="assets/javascripts/vendor/json2.js"></script>
+  <script src="assets/javascripts/application.js"></script>
+  <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+
+</head>
+
+<body background="assets/images/flower-whole.jpg">
+ <div id="content">
+    </div>
+  <div class="wrapper">
+    <div class="menu">
+      <a href="#" class="one">left</a>
+      <a href="#" class="two">right</a>
+      <a href="#" class="three">Up</a>
+      <a href="#" class="four">Down</a>
+	  
+	<div class="circle">
+        <ul class="saturate">
+          <li><img src="assets/images/flowers1.jpg" alt="Flowers left side">Orchid</li>
+          <li>#</li>
+          <li>3</li>
+          <li>#</li>
+        </ul>
+    </div>
+    </div>
+  </div>
+
+	<script type="text/template" id="orchid_collection-template">
+		<thead>
+			<tr class='header'>
+				<th>Name</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>		
+	</script>
+	
+	<script type="text/template" id="orchid-template">
+		<td><%= name ></td>
+	</script>
+</body>
+</html>

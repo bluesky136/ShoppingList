@@ -1,0 +1,251 @@
+body {
+  min-width: 960px;
+  height: auto;
+  background-repeat: no-repeat;
+ 
+}
+
+#content {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/*================================================================*/
+/*-----------------------------Menu------------------------*/
+/*HEADER*/
+.header {
+  height: 25px;
+  background: #222;
+  color: #eee;
+  text-align: center;
+  font: 10px/25px Helvetica, Verdana, sans-serif; 
+}
+
+.header a {
+  color: #999;
+}
+
+
+
+/*WRAPPER*/
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  margin: 33px auto;
+  width: 370px;
+}
+
+.menu a {
+  margin-right: -4px;
+  padding: 10px 30px;
+  width: 50px;
+  color: #333;
+  text-decoration: none;
+  font: 15px/25px Helvetica, Arial, sans-serif;
+}
+
+.menu a:hover {
+  background: #eee;
+  	
+}
+
+/*INNER CIRCLE*/
+.wrapper:before {
+  content: "";
+  text-align: center;
+  font: 30px/135px Georgia, Times, serif;
+  color: #efefef;
+  position: absolute;
+  top: 140px;
+  left: 110px;
+  z-index: 10;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  -webkit-box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+  box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+}
+
+/*MAIN CIRCLE*/
+.circle {
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  margin-left: 25px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: yellow;
+
+  box-shadow: inset 0px 0px 30px rgba(0,0,0,0.3);
+  -webkit-box-shadow: inset 0px 0px 30px rgba(0,0,0,0.3);
+
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  
+  opacity: 0.87;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+
+/*LITTLE CIRCLES*/
+.circle li {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  list-style-type: none;
+  text-align: center;
+  font: 20px/50px Helvetica, Arial, sans-serif;
+  top: 0;
+  left: 0;
+  
+}
+
+.circle li:nth-child(1) {
+  top: 15px;
+  left: 125px;
+  color: #003300;
+  text-shadow: 1px 1px #006600;
+}
+
+.saturate img:hover
+{
+	filter: saturate(500%);
+	-webkit-filter: saturate(500%);
+	-moz-filter: saturate(500%);
+	-o-filter: saturate(500%);
+	-ms-filter: saturate(500%);
+}
+.circle li:nth-child(2) {
+  top: 125px;
+  left: 235px;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+  color: #660000;
+  text-shadow: 1px 1px #660033;
+}
+
+.circle li:nth-child(3) {
+  top: 235px;
+  left: 125px;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+  color: brown;
+}
+
+.circle li:nth-child(4) {
+  top: 125px;
+  left: 15px;
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  transform: rotate(270deg);
+  color: blue;
+}
+
+.circle li, .wrapper {
+ opacity: 0.87;
+ filter: alpha(opacity=60); /* For IE8 and earlier */
+	
+	
+}
+
+/*HOVER STATES*/
+.menu > .one:hover ~ .circle {
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);	
+}
+ 
+.menu > .two:hover ~ .circle {
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.menu > .three:hover ~ .circle {
+  -webkit-transform: rotate(-180deg);
+  -moz-transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
+  -o-transform: rotate(-180deg);
+  transform: rotate(-180deg);
+}
+
+.menu > .four:hover ~ .circle {
+  -webkit-transform: rotate(-270deg);
+  -moz-transform: rotate(-270deg);
+  -ms-transform: rotate(-270deg);
+  -o-transform: rotate(-270deg);
+  transform: rotate(-270deg);
+}
+/*-----------------------------Menu End------------------------*/
+/*================================================================*/
+/*-----------------------------Shopping list------------------------*/
+
+.container_12 {
+  position: relative;
+  width: 960px;
+  margin: 33px auto;
+}
+
+
+.grid_12
+ {
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  
+  
+}
+
+.grid_6{
+ background-color: yellow;	
+ box-shadow: inset 0px 0px 36px rgba(0,0,0,0.3);
+ -webkit-box-shadow: inset 0px 0px 30px rgba(0,0,0,0.3);
+ border: 1px solid black;
+ opacity: 0.87;
+ filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+  
+
+
+h1 {
+  font-family: Georgia, serif;
+  font-weight: normal;
+  padding-top: 16px;
+  text-align: center;
+}
+
+
+
+p {
+  border: 1px solid #666;
+  overflow: hidden;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.btn{
+  float: right;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+/*-----------------------------Shopping End------------------------*/
+/*================================================================*/

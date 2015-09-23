@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+
+<title></title>
+ 
+  <script src="javascript/jquery.min.js"></script> 
+  <script src="javascript/underscore.js"></script>
+  <script src="javascript/backbone.js"></script>
+  <script src="javascript/json2.js"></script>
+
+  <script src="javascript/shoppinglist-model-collection.js"></script>
+  <script src="javascript/shoppinglist-view-item-simple.js"></script>
+  <script src="javascript/shoppinglist-view-itemform.js"></script>
+  <link rel="stylesheet" type="text/css" media="screen" href="css/style.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+
+</head>
+ 
+<body background="images/flower-whole.jpg">
+ 
+  
+  <div class="wrapper">
+
+    <div class="menu">
+      <a href="#" class="one">left</a>
+      <a href="#" class="two">right</a>
+      <a href="#" class="three">Up</a>
+      <a href="#" class="four">Down</a>
+
+      <div class="circle">
+        <ul class="saturate">
+          <li><img src="images/flowers1.jpg" alt="Flowers left side">Orchid</li>
+          <li>#</li>
+          <li>3</li>
+          <li>#</li>
+        </ul>
+      </div>
+
+    </div>
+	</div>
+<div class="container_12">
+<button type="button" class="btn btn-success" >Checkout</button>
+		<div class="grid_6">
+			<h1>Shopping list</h1>
+
+            <div id="main" role="main">
+			
+                <form id="shopping-form" >
+					
+                   <h3><label for="list-item">Item</label></h3>
+				   
+                   <p><input type="number" size="27" id="list-item" min="0"/></p>
+				
+                    <div class="shopping-form-control">
+                        <button type="submit">Add to list</button>
+                    </div>
+                </form>
+			
+            </div>
+ 
+        <div id="shopping-list">
+			    
+			<ul id="product-list" class="content"></ul>
+		</div>
+		
+        </div>
+		
+
+		
+	</div>
+	<script>
+
+$(function() {
+    window.Products = new ShoppingList();
+
+    var list = new ProductView({
+      el: $("#product-list"),
+      collection: Products
+    });
+
+    window.Products.fetch({
+        success: function(collection, response){
+            list.render();
+        }
+    });
+
+    var form = new ItemForm({
+        el: document.getElementById("shopping-form")
+    });
+
+    form.bind('create', function (product) {
+        window.Products.add(product);
+    });
+
+});
+  </script>
+	<script type="text/template" id="product-template">
+    <li data-id="<%= Id || 0 %>">
+		<div class="prod-detail">
+            <span class="prod-name grid_2"><%= title %></span>
+            <span class="prod-state grid_1"><%= state %></span>
+		</div>
+		
+ 	</li>
+  </script>
+
+  <script type="text/template" id="product-count-template">
+    <table>
+      <tr>
+        <td>Total items: <strong><%= total %></strong></td><td>&nbsp;</td>
+        <td>To buy: <strong><%= buying %></strong></td>
+      </tr>
+    </table>
+  </script>
+ 
+</body>
+</html>
