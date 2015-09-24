@@ -1,0 +1,39 @@
+﻿
+ #Please enter the commit message for your changes. Lines starting
+ #with '' will be ignored, and an empty message aborts the commit.
+# On branch master
+ #Changes to be committed:
+	new file:   assets/css/bootstrap.css
+	new file:   assets/css/bootstrap.min.css
+	new file:   assets/css/style - backupV1.css
+	new file:   assets/css/style.css
+	new file:   assets/css/tableStyle.css
+	new file:   assets/images/1.JPG
+	new file:   assets/images/3.JPG
+	new file:   assets/images/4.JPG
+	new file:   assets/images/IMG_6806.JPG
+	new file:   assets/images/IMG_7259.JPG
+	new file:   assets/images/IMG_7264.JPG
+	new file:   assets/images/IMG_7353.JPG
+	new file:   assets/images/IMG_7357.JPG
+	new file:   assets/images/down.gif
+	new file:   assets/images/flower-left-half.jpg
+	new file:   assets/images/flower-right-half.JPG
+	new file:   assets/images/flower-whole.jpg
+	new file:   assets/images/flowers1.jpg
+	new file:   assets/images/panel-6-solar-system-planets-wallpapers1.jpg
+	new file:   assets/images/up.gif
+	new file:   assets/javascripts/application.js
+	new file:   assets/javascripts/vendor/backbone.babysitter.js
+	new file:   assets/javascripts/vendor/backbone.js
+	new file:   assets/javascripts/vendor/backbone.marionette.js
+	new file:   assets/javascripts/vendor/backbone.marionette.min.js
+	new file:   assets/javascripts/vendor/backbone.wreqr.js
+	new file:   assets/javascripts/vendor/jquery.js
+	new file:   assets/javascripts/vendor/jquery.min.js
+	new file:   assets/javascripts/vendor/json2.js
+	new file:   assets/javascripts/vendor/underscore.js
+	new file:   index - backupV1.html
+	new file:   index.html
+
+
