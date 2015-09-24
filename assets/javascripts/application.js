@@ -1,55 +1,136 @@
-﻿MyShopList = new Backbone.Marionette.Application(); //Starting a Backbone.Marionette application
-													//Using Backbone to build RESTful JavaScript app
-MyShopList.addRegions({
-	mainRegion: "#content" //using a DOM element with id "content" to fill the shopping list.
-							//Will include inside the index.html element "content".
-							//**Backbone.sync eg: objectName.save() and the JSON of that object will be sent to server.
-});
+App = new Backbone.Marionette.Application();
+App.module('Cart', function(Cart, App) {
 
-Orchid = Backbone.Model.extend({
-						//currently this object has empty with "{}". Need to provide javascript later for this object.
-}); 
+    this.ProductModel = Backbone.Model.extend({
+        defaults: {
+            id: null,
+            title: '',
+            url: '',
+            variation: 466,
+            image: null,
+            quantity: 1,
+            price: 0
+        }
+    });
 
-OrchidCollection = Backbone.Collection.extend({
-	model: Orchid 			//Pretty much like java array in declaring the type of object it will store.
-});
+    this.ProductsCollection = Backbone.Collection.extend({
+        model: Cart.ProductModel,
+        url: 'http://private-01286-marionetteshoppingcart.apiary-mock.com/products',
+        getSubtotal: function() {
+            var subtotal = 0;
+            var data = _.each(this.toJSON(), function(item) {
+               subtotal += Number(item.quantity * item.price);
+            });
+            return subtotal;
+        }
+    });
 
-OrchidView = Backbone.Marionette.ItemView.extend({ //Marionette already helps with the render method. Hence it is not needed. So all that is
-	template: "#orchid-template", // needed is to create the Single View to display the object; eg an instance of an Orchid.
-	tagName: 'tr', //Backbone plain vanilla tag render is a "div". In this case we should use "tr" tag to be generated as a DOM element instead.
-	className: 'orchid_tagName' // **tagName is IMPORTANT!
-	
-});
+    this.ProductCartView = Backbone.Marionette.ItemView.extend({
+        template: '#cart-product-template',
+        tagName: "tr",
+        ui: {
+            delete: '.delete-button'
+        },
+        events: {
+            'click @ui.delete': 'removeProduct'
+        },
+        modelEvents: {
+            'change:quantity': 'render blink'
+        },
+        serializeData: function() {
+            return _.extend(this.model.toJSON(), {
+                'price': Number(this.model.get('price') * this.model.get('quantity'))
+            });
+        },
+        blink: function() {
+            this.$el.hide().fadeIn();
+        },
+        enableProduct: function() {
+            this.$el.fadeTo(150, 1);
+            this.ui.delete.removeClass('disabled');
+        },
+        disableProduct: function() {
+            this.$el.fadeTo(150, 0.5);
+            this.ui.delete.addClass('disabled');
+        },
+        removeProduct: function(event) {
 
-OrchidCollectionView = Backbone.Marionette.CompositeView.extend({ //Going to create a view to show a collection of Orchids("itemView").
-	tagName: "table",											//Define same as "itemView" but with addition appendHtml function to tell where. eg body
-	id: "orchid_collection",
-	className: "table-striped table-bordered",
-	template: "#orchid_collection-template",
-	itemView: OrchidView,
-	
-	appendHtml: function(collectionView, itemView){ //Dumping the compositeView into the "tbody"
-		collectionView.$("tbody").append(itemView.el);
-	}
-});
+            if (this.ui.delete.hasClass('disabled')) {
+                event.preventDefault();
+                return;
+            }
 
-//***TIME to start this app! Using "Initializer" as helper
+            this.disableProduct();
+            
+            this.model.destroy({
+                wait: true,
+                error: _.bind(this.enableProduct, this)
+            });
+        }
+    });
 
-MyShopList.addInitializer(function(options){
-	var anOrchidCollectionView = new OrchidCollectionView({
-		collection: options.orchids
-	});
-	
-	MyShopList.mainRegion.show(anOrchidCollectionView);
-	
-});
+    this.EmptyCartView = Backbone.Marionette.ItemView.extend({
+        template: '#cart-empty-template',
+        tagName: 'tr'
+    });
 
-$(document).ready(function(){
-	var orchids = new OrchidCollection([ //Declaring variables to each object
-	 new Orchid({ name: 'Bleeding Heart', image_path: 'assets/images/1.jpg' }),
-	 new Orchid({ name: 'Dragon flower' }),
-	 new Orchid({ name: 'Clarisse Austin(Best Pink)' })
-	]);
-	
-	MyShopList.start({orchids:orchids});
+    this.CartView = Backbone.Marionette.CompositeView.extend({
+        template: '#cart-template',
+        childView: Cart.ProductCartView,
+        childViewContainer: 'tbody',
+        emptyView: Cart.EmptyCartView,
+
+        ui: {
+            button: '.button',
+            subtotal: '.subtotal'
+        },
+
+        initialize: function() {
+            this.listenTo(this, 'render:empty', this.disableCart);
+        },
+
+        collectionEvents: {
+            'reset': 'render',
+            'reset add remove change:quantity': 'setSubtotal',
+            'reset add': 'enableCart'
+        },
+
+        events: {
+            'click @ui.button': 'clickButton'
+        },
+
+        setSubtotal: function() {
+            var subtotal = this.collection.getSubtotal();
+            this.ui.subtotal.hide();
+            if (Boolean(subtotal)) {
+                this.ui.subtotal.html(String(subtotal+' $AUD'));  
+                // this is very dirty.. i know
+                this.ui.subtotal.fadeTo(80, 0.1).fadeTo(80, 1.0).fadeTo(80, 0.1).fadeTo(160, 1.0);
+            }
+        },
+
+        disableCart: function() {
+            this.ui.button.addClass('disabled');
+        },
+
+        enableCart: function() {
+            this.ui.button.removeClass('disabled');
+        },
+
+        clickButton: function(event) {
+            if (this.ui.button.hasClass('disabled')) {
+                event.preventDefault();
+            }
+        }
+    });
+
+    App.addInitializer(function(){
+        var products = new Cart.ProductsCollection();
+        var cart = new Cart.CartView({
+            el: '#shopping-cart',
+            collection: products
+        });
+        products.fetch({reset:true});
+    })
+
 });

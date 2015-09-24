@@ -1,0 +1,30 @@
+[
+    {
+        "id": 339,
+        "title": "Product title 2",
+        "image": "img/product-2.jpg",
+        "quantity": 1,
+        "url": "/url-product-2",
+        "price": 60,
+        "variation": 466
+
+    },
+    {
+        "id": 165,
+        "title": "Product title 1",
+        "image": "img/product-1.jpg",
+        "url": "/url-product-2",
+        "quantity": 1,
+        "price": 30.25,
+        "variation": 466
+    },
+    {
+        "id": 187,
+        "title": "Product title 3",
+        "image": "img/product-3.jpg",
+        "url": "/url-product-3",
+        "quantity": 1,
+        "price": 75,
+        "variation": 466
+    }
+]
